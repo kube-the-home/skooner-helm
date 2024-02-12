@@ -1,0 +1,45 @@
+{{- $name := include "skooner.name" . -}}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ $name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ $name }}
+  {{- if .Values.securityContext.pod }}
+  securityContext:
+  {{- toYaml .Values.securityContext.pod | nindent 4 }}
+  {{ end }}
+  template:
+    metadata:
+      labels:
+        app: {{ $name }}
+    spec:
+      containers:
+      - name: {{ $name }}
+        image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        {{- if .Values.securityContext.container }}
+        securityContext:
+        {{- toYaml .Values.securityContext.container | nindent 10 }}
+        {{- end }}
+        {{- if .Values.resources }}
+        resources:
+        {{- toYaml .Values.resources | nindent 10 }}
+        {{- end }}
+        {{- if .Values.env }}
+        env:
+        {{- toYaml .Values.env | nindent 10 }}
+        {{- end }}
+        ports:
+          - containerPort: {{ .Values.application.port }}
+        {{- if .Values.application.livenessProbe }}
+        livenessProbe:
+        {{- toYaml .Values.application.livenessProbe | nindent 10 }}
+        {{- end }}

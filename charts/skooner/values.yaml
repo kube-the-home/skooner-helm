@@ -1,0 +1,37 @@
+image:
+  registry: "ghcr.io"
+  repository: "skooner-k8s/skooner"
+  tag: "stable"
+  pullPolicy: "IfNotPresent"
+
+application:
+  port: 4654
+  livenessProbe:
+    httpGet:
+      scheme: HTTP
+      path: /
+      port: 4654
+    initialDelaySeconds: 30
+    timeoutSeconds: 30
+
+nodePort:
+  enabled: false
+  port: ~
+
+clusterip:
+  enabled: false
+  port: 8080
+
+ingress:
+  enabled: false
+  ingressClassName: "nginx"
+  host: ~
+  tls: []
+
+securityContext:
+  pod: {}
+  container: {}
+
+resources: {}
+
+env: {}
