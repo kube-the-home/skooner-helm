@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  skooner:
+  - apiVersion: v2
+    created: "2024-02-17T13:55:37.843796382Z"
+    description: A Helm chart to deploy skooner to Kubernetes
+    digest: fe34cd21dd89c530fea472db69d5c90ad192d1024ec9f25704b397616a0bbb07
+    name: skooner
+    type: application
+    urls:
+    - https://github.com/kube-the-home/skooner-helm/releases/download/skooner-0.1.0/skooner-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-02-17T13:55:37.843802694Z"
