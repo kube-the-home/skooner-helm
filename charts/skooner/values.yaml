@@ -27,6 +27,7 @@ ingress:
   ingressClassName: "nginx"
   host: ~
   tls: []
+  annotations: {}
 
 securityContext:
   pod: {}
