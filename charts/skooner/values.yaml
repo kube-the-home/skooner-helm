@@ -29,6 +29,23 @@ ingress:
   tls: []
   annotations: {}
 
+# -- Gateway API HTTPRoute configuration (alternative to Ingress)
+route:
+  # -- Enable HTTPRoute creation
+  enabled: false
+  # -- Annotations for the HTTPRoute resource
+  annotations: {}
+  # -- Labels for the HTTPRoute resource
+  labels: {}
+  # -- Hostnames to match for routing
+  hostnames: []
+  # -- Parent references (Gateway references)
+  # Example:
+  # parentRefs:
+  #   - name: gateway-name
+  #     namespace: gateway-namespace
+  parentRefs: []
+
 securityContext:
   pod: {}
   container: {}
